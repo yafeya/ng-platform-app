@@ -1,7 +1,0 @@
-{
-  "name": "mobile-hero-app",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}

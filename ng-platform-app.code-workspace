@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "ng-system-common-app"
-		},
-		{
-			"path": "mobile-hero-app"
 		}
 	],
 	"settings": {}
