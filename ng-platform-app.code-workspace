@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "ng-system-common-app"
+		},
+		{
+			"path": "ionic-hero-app"
 		}
 	],
 	"settings": {}
