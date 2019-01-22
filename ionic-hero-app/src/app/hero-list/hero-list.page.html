@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Heroes
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addHero()">
+        <ion-icon slot="icon-only" name="clipboard"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item button detail *ngFor="let hero of heroService.Heroes" (click)="directToDetail(hero)">
+      <ion-label>{{ hero.Name }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

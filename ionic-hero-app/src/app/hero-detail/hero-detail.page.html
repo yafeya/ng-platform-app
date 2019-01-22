@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/hero-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ Name }}</ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="editHero()">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+      <ion-button (click)="deleteHero()">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <h4>Name:</h4>
+  </div>
+  <div *ngIf="!IsEditing">
+    <h4>{{Name}}</h4>
+  </div>
+  <div *ngIf="IsEditing">
+    <ion-input type="text" class="border" [(ngModel)]="Name"></ion-input>
+  </div>
+  <div>
+    <h4>Power:</h4>
+  </div>
+  <div *ngIf="!IsEditing">
+    <h4 >{{Power}}</h4>
+  </div>
+  <div *ngIf="IsEditing">
+    <ion-input type="text" class="border" [(ngModel)]="Power"></ion-input>
+  </div>
+  <div *ngIf="IsEditing">
+    <ion-button color="primary" [disabled]="!IsValid" (click)="submitEdit()">Submit</ion-button>
+  </div>
+</ion-content>

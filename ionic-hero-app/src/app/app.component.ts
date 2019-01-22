@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import * as Common from 'ng-system-common';
+import { Hero } from './models/hero';
+import { HeroService } from './services/hero-service.service';
 
 @Component({
   selector: 'app-root',
@@ -13,20 +15,27 @@ import * as Common from 'ng-system-common';
 export class AppComponent implements OnInit {
   private mLogger: Common.ILogger;
 
-  ngOnInit(): void {
-    this.mLogger = this.loggerFactory.CreateLogger('AppComponent');
-    let list = new Common.List<string>();
-    list.AddRange(['Luke', 'Leiya']);
-    let results = list.Where(x => x.length > 0);
-    for (let result of results) {
-      this.mLogger.Error(result);
+  async ngOnInit() {
+    await this.heroService.load();
+    if (this.heroService.Heroes.IsEmpty()) {
+      let initHeros = [
+        new Hero('1', 'Captain America', 'Super Soldier'),
+        new Hero('2', 'Iron Man', 'Armor & Millionare'),
+        new Hero('3', 'Thor', 'God with Thunder'),
+        new Hero('4', 'Hulk', 'Smash everything'),
+        new Hero('5', 'Halk Eye', 'Arrow Sniper'),
+        new Hero('6', 'Black Widow', 'Expert of fighting & interrogating')
+      ];
+      this.heroService.addHeros(initHeros);
     }
   }
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    @Inject(Common.LoggerFactoryToken) private loggerFactory: Common.ILoggerFactory
+    private heroService: HeroService,
+    @Inject(Common.LoggerFactoryToken)
+    private loggerFactory: Common.ILoggerFactory
   ) {
     this.loggerFactory.AddDebug();
     this.initializeApp();
