@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { HeroDetailPage } from './hero-detail.page';
+import { HeroValidatorDirective } from './directives/hero-validator.directive';
 
 const routes: Routes = [
   {
@@ -21,6 +22,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [HeroDetailPage]
+  declarations: [HeroDetailPage, HeroValidatorDirective]
 })
 export class HeroDetailPageModule {}

@@ -35,6 +35,6 @@
     <ion-input type="text" class="border" [(ngModel)]="Power"></ion-input>
   </div>
   <div *ngIf="IsEditing">
-    <ion-button color="primary" [disabled]="!IsValid" (click)="submitEdit()">Submit</ion-button>
+    <ion-button color="primary" [disabled]="!IsValid" (click)="submitEdit()" appHeroValidator>Submit</ion-button>
   </div>
 </ion-content>
