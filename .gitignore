@@ -5,6 +5,9 @@
 /**/tmp
 /**/out-tsc
 /**/www
+/**/platforms
+/**/plugins
+/**/resources
 
 # dependencies
 /**/node_modules
