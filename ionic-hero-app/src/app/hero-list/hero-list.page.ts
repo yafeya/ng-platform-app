@@ -4,17 +4,27 @@ import { AlertController, NavController } from '@ionic/angular';
 import { Hero } from '../models/hero';
 import { NavigationOptions } from '@ionic/angular/dist/providers/nav-controller';
 
+import * as Common from 'ng-system-common';
+
 @Component({
   selector: 'app-hero-list',
   templateUrl: './hero-list.page.html',
   styleUrls: ['./hero-list.page.scss']
 })
 export class HeroListPage implements OnInit {
+  private mHeroes: Common.List<Hero> = new Common.List<Hero>();
+
   constructor(
     private alertCtrl: AlertController,
     private navCtrl: NavController,
     private heroService: HeroService
-  ) {}
+  ) { 
+    this.mHeroes = this.heroService.Heroes;
+  }
+  
+  get Heroes(): Common.List<Hero> { 
+    return this.mHeroes;
+  }
 
   ngOnInit() { }
 
@@ -40,6 +50,7 @@ export class HeroListPage implements OnInit {
           {
             text: 'Save',
             handler: data => {
+              this.mHeroes.Add(data);
               this.heroService.createHero(data.name, data.power);
             }
           }
