@@ -17,6 +17,22 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     await this.heroService.load();
+    this.removeInvalidHeroes();
+    this.initHeroesWhenEmpty();
+  }
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    private heroService: HeroService,
+    @Inject(Common.LoggerFactoryToken)
+    private loggerFactory: Common.ILoggerFactory
+  ) {
+    this.loggerFactory.AddDebug();
+    this.initializeApp();
+  }
+
+  private initHeroesWhenEmpty() {
     if (this.heroService.Heroes.IsEmpty()) {
       let initHeros = [
         new Hero('1', 'Captain America', 'Super Soldier'),
@@ -29,16 +45,17 @@ export class AppComponent implements OnInit {
       this.heroService.addHeros(initHeros);
     }
   }
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private heroService: HeroService,
-    @Inject(Common.LoggerFactoryToken)
-    private loggerFactory: Common.ILoggerFactory
-  ) {
-    this.loggerFactory.AddDebug();
-    this.initializeApp();
+
+  private removeInvalidHeroes() {
+    let invalidHeroes: Common.List<Hero> = new Common.List<Hero>();
+    for (let hero of this.heroService.Heroes) {
+      if (!hero.Id) {
+        invalidHeroes.Add(hero);
+      }
+    }
+    for (let invalidHero of invalidHeroes) {
+      this.heroService.deleteHero(invalidHero);
+    }
   }
 
   initializeApp() {

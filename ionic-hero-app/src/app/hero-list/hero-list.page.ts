@@ -12,21 +12,12 @@ import * as Common from 'ng-system-common';
   styleUrls: ['./hero-list.page.scss']
 })
 export class HeroListPage implements OnInit {
-  private mHeroes: Common.List<Hero> = new Common.List<Hero>();
-
   constructor(
     private alertCtrl: AlertController,
     private navCtrl: NavController,
     private heroService: HeroService
-  ) { 
-    this.mHeroes = this.heroService.Heroes;
-  }
-  
-  get Heroes(): Common.List<Hero> { 
-    return this.mHeroes;
-  }
-
-  ngOnInit() { }
+  ) {}
+  ngOnInit() {}
 
   addHero() {
     this.alertCtrl
@@ -41,7 +32,7 @@ export class HeroListPage implements OnInit {
           {
             type: 'text',
             name: 'power'
-          },
+          }
         ],
         buttons: [
           {
@@ -50,7 +41,6 @@ export class HeroListPage implements OnInit {
           {
             text: 'Save',
             handler: data => {
-              this.mHeroes.Add(data);
               this.heroService.createHero(data.name, data.power);
             }
           }
@@ -60,7 +50,7 @@ export class HeroListPage implements OnInit {
         alert.present();
       });
   }
-  
+
   directToDetail(hero: Hero) {
     let id = hero.Id;
     let url = `/hero-detail/${id}`;
