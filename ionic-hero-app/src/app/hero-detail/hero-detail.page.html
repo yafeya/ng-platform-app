@@ -24,6 +24,7 @@
   </div>
   <div *ngIf="IsEditing">
     <ion-input type="text" class="border" [(ngModel)]="Name"></ion-input>
+    <app-hero-name-validator [HeroName]="Name"></app-hero-name-validator>
   </div>
   <div>
     <h4>Power:</h4>

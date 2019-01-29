@@ -8,6 +8,8 @@ import { IonicModule } from '@ionic/angular';
 import { HeroDetailPage } from './hero-detail.page';
 import { HeroValidatorDirective } from './directives/hero-validator.directive';
 
+import { HeroNameValidatorComponent } from './hero-name-validator/hero-name-validator.component'
+
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +24,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [HeroDetailPage, HeroValidatorDirective]
+  declarations: [HeroDetailPage, HeroValidatorDirective, HeroNameValidatorComponent]
 })
 export class HeroDetailPageModule {}
